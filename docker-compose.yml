@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    image: httpd:2.4 # O tu imagen personalizada de Apache
+    volumes:
+      - ./html/:/usr/local/apache2/htdocs/ # Mapea tus archivos al contenedor
+      # Opcional: Mapea archivos de configuración de Apache personalizados
+      # - ./apache-conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+    ports:
+      - "80:80" # Mapea el puerto 80 del contenedor al puerto 80 del host (o a otro puerto)
+    restart: always
+    # Asegúrate de añadir labels para Traefik si usas el proxy de Dokploy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my-apache-app.rule=Host(`tu_dominio.com`)" # Reemplaza tu_dominio.com
+      - "traefik.http.services.my-apache-app.loadbalancer.server.port=80"
