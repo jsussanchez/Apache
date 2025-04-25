@@ -13,5 +13,5 @@ services:
     # Asegúrate de añadir labels para Traefik si usas el proxy de Dokploy
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.my-apache-app.rule=Host(`tu_dominio.com`)" # Reemplaza tu_dominio.com
+      - "traefik.http.routers.my-apache-app.rule=Host(`jesussanchez.online`)" # Reemplaza tu_dominio.com
       - "traefik.http.services.my-apache-app.loadbalancer.server.port=80"
